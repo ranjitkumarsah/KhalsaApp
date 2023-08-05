@@ -1,0 +1,5 @@
+Today I have worked on following tasks - 
+1) Worked on edit and delete records in student list.
+2) Worked on subjects in teacher.
+3) Principal - register and login created and after login redirect to dashboard and in principal dashboard these  fields are in 
+   sidebar student list, teacher list and homework assigned (in which teacher has sent which student assigned homework).

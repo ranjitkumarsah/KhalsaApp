@@ -1,0 +1,182 @@
+@extends('Sewapartner.layouts.App')
+@section('card','menu-open')
+@section('viewcardholder','active')
+<style>
+  #active{
+    border: none;color: blue;font-size: 22px;
+  }
+  #inactive{
+    border: none;color: red;font-size: 22px;
+  }
+  th{
+    color:#0b528f !important;
+    font-size: 0.9rem;
+    text-align: center !important;
+  }
+  </style>
+  <!-- Content Wrapper. Contains page content -->
+  @section('main_section')
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Manage Cardholder</h1>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="Table_ID" class="table table-responsive-sm table-striped table table-bordered table-hover" >
+                  <thead>
+                  <tr>
+                  <th style="width: 15px;">#</th>
+                  <th style="width: 15px;">Cardholder Id</th>  
+                    <th style="width: 15px;">Name</th>                     
+                    <th style="width: 15px;">Age</th>                  
+                    <th style="width: 70px;">Address</th>
+                    {{-- <th style="width: 70px;">Job</th>
+                    <th style="width: 70px;">Annual Income</th>
+                    <th style="width: 70px;">Contact Number</th> --}}
+                    {{-- <th style="width: 70px;">Qualification</th> --}}
+                    <th style="width: 70px;">Disease name</th>
+                    <th style="width: 70px;">Disease details</th>
+                    <th style="width: 70px;">Family Details</th>
+                    <th style="width: 70px;">Children Details</th>
+                  </tr>
+                  </thead>
+                  <tbody style="font-size: 0.9rem;">
+                  <?php $i=1;?>
+                    @foreach ($cardholderdata as $cardholders)
+                    <tr>
+                    <td>{{$i}}</td> 
+                    <td>{{$cardholders->card_id}}</td> 
+                      <td><a href="{{url('Sewapartner/carddata')}}/{{$cardholders->id}}">{{$cardholders->name}}</a></td>                    
+                      <td>{{$cardholders->age}} yrs</td>                     
+                      <td>{{$cardholders->address}}</td>
+                      {{-- <td>{{$cardholders->job}}</td>
+                      <td>{{$cardholders->annual_income}}</td>
+                      <td>{{$cardholders->contact_number}}</td> --}}
+                      {{-- <td>{{$cardholders->qualification}}</td> --}}
+                      <td>{{$cardholders->disease_name}}</td>
+                      <td>{{$cardholders->disease_details}}</td>
+                      <td><a href="{{url('Sewapartner/family_details',$cardholders->id)}}">Family Details</a></td>
+                      <td><a href="{{url('Sewapartner/children_details',$cardholders->id)}}">Children Details</a></td>
+                     
+                          {{-- <td> <a href="{{url('Admin/delete_user',$customer->id)}}"><i class="material-icons" onclick="return confirm('Are you sure to delete this?')">delete</i></a></td> --}}
+                      
+                    </tr>
+                    <?php $i++;?>
+                    @endforeach                  
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+           
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <strong>Copyright &copy; 2022 <a href="https://protolabzit.com/" target="_blank">Protolabz eServices</a>.</strong>
+    All rights reserved.
+    {{-- <div class="float-right d-none d-sm-inline-block">
+      <b>Version</b> 3.2.0-rc
+    </div> --}}
+  </footer>
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+
+<!-- DataTables  & Plugins -->
+
+<!-- AdminLTE App -->
+<
+<!-- Page specific script -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+  $(document).ready( function () {
+    // alert('hh');
+    var t = $('#Table_ID').DataTable({
+        columnDefs: [
+            // {
+            //     searchable: false,
+            //     orderable: false,
+            //     targets: 0,
+            // },
+        ],
+        // order: [[0, 'desc']],
+    });
+ 
+    // t.on('order.dt search.dt', function () {
+    //     let i = 1;
+ 
+    //     t.cells(null, 0, { search: 'applied', order: 'applied' }).every(function (cell) {
+    //         this.data(i++);
+    //     });
+    // }).draw();
+    
+  } );
+  </script>
+   <script> 
+    
+     function show(id) {
+        //  alert(id);
+         $.ajax({
+             type: "Get",
+             url:"{{url('Admin/change_status_customer')}}",
+             data: {customer_id:id },
+             success: function(data) {              
+                //  if(data.status == 0){
+                //    $.each(data.message, function (key, value) {
+                //           $('#'+key).removeClass('d-none');
+                //           $('#'+key).html(value[0]);
+                //        });
+                //    }
+                //    if(data.status == 1){
+                //        Swal.fire(
+                //        'Good job!',
+                //        'Status Changed!',
+                //        'success'
+                //      )
+                   
+                //    }
+                   location.reload();
+             }
+         });
+       }  
+   </script>
+@endsection
+
+
