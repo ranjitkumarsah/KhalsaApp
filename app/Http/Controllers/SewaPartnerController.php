@@ -433,6 +433,7 @@ public function editaccountdetail($id)
       
        $feedback['add_id'] = Auth::guard('sewa')->user()->id;
        $feedback['add_name'] =  Auth::guard('sewa')->user()->name;
+       $feedback['created_at'] =  Carbon::now();
       
     
        $feedback_id =  DB::table('feedbacks')->insertGetId($feedback);

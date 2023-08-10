@@ -135,7 +135,7 @@ th{
                     <th >Location</th>                  
                     <th >Image</th>
                     <th >Date</th>
-                    <th style="width:60px;">Action</th>
+                    <th >Approve / Decline</th>
                   </tr>
                   </thead>
                   <tbody style="font-size: 1.4rem;">

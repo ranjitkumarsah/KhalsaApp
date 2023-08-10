@@ -83,7 +83,7 @@
                   <div class="col=lg-6 col-md-6 col-sm-12">
                     <div class="form-group">
                       <label for="name">Name <span class="text-danger">*</span></label>
-                      <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="Enter name" >
+                      <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="Enter name" onkeypress="return inputOnlyText(event)">
                       @error('name')
                       <span class="invalid-feedback" role="alert">
                         <strong>{{ $errors->first('name') }}</strong>
@@ -94,7 +94,7 @@
                   <div class="col-lg-6 col-md-6 col-sm-12">
                     <div class="form-group">
                       <label for="name_punjabi">ਨਾਮ <span class="text-danger">*</span></label>
-                      <input type="text" name="name_punjabi" class="form-control @error('name_punjabi') is-invalid @enderror" id="name_punjabi" placeholder="ਨਾਮ ਦਰਜ ਕਰੋ" >
+                      <input type="text" name="name_punjabi" class="form-control @error('name_punjabi') is-invalid @enderror" id="name_punjabi" placeholder="ਨਾਮ ਦਰਜ ਕਰੋ" onkeypress="allowOnlyPunjabi(event)">
                       @error('name')
                       <span class="invalid-feedback" role="alert">
                         <strong>{{ $errors->first('name_punjabi') }}</strong>
@@ -341,6 +341,10 @@
 <script type="text/javascript">
   $(document).ready(function() {
   
+
+
+
+
     $('#form').on('submit', function (e) {
       // alert('hh');
       var spinner = $('#loader');
@@ -384,6 +388,7 @@
   });
   </script>
    <script>
+  
     function isNumber(evt) {
     evt = (evt) ? evt : window.event;
     var charCode = (evt.which) ? evt.which : evt.keyCode;
@@ -396,5 +401,23 @@ $('#village').select2({
       placeholder:'Select City',
       minimumResultsForSearch:1,
     });
+
+    function inputOnlyText(event) {
+      
+      var keyCode = event.keyCode || event.which;
+
+           
+      if ((keyCode >= 65 && keyCode <= 90) ||  // A-Z
+          (keyCode >= 97 && keyCode <= 122) || // a-z
+          keyCode === 32 || // Space
+          keyCode === 8 ||  // Backspace
+          keyCode === 46) { // Delete
+            return true;
+      } else {
+        event.preventDefault();
+        return false;
+      }
+    }
+
   </script>
 @endsection

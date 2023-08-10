@@ -178,7 +178,7 @@
                     <div class="form-group">
                       <label for="pwd">Name: <span class="text-danger">*</span></label>
                       <input type="text" class="form-control" placeholder="Enter name" name="name" id="name"
-                        value="{{$sewapartner->name}}">
+                        value="{{$sewapartner->name}}" onkeypress="return inputOnlyText(event)">
                     </div>
                   </div>
                 </div>
@@ -214,8 +214,8 @@
                   <div class="col-lg-6 col-md-6 col-sm-12">
                     <div class="form-group">
                       <label for="email">Contact Number:</label>
-                      <input type="number" class="form-control" placeholder="Enter Contact Number" name="contact_number"
-                        id="contact_number" value="{{$sewapartner->contactnumber}}">
+                      <input type="text" class="form-control" placeholder="Enter Contact Number" name="contact_number"
+                        id="contact_number" value="{{$sewapartner->contactnumber}}" onkeypress="return validatePhone(event)">
                     </div>
                   </div>
                 </div>
@@ -434,6 +434,40 @@
       }
     });
   });
+  function inputOnlyText(event) {
+      
+      var keyCode = event.keyCode || event.which;
+
+           
+      if ((keyCode >= 65 && keyCode <= 90) ||  // A-Z
+          (keyCode >= 97 && keyCode <= 122) || // a-z
+          keyCode === 32 || // Space
+          keyCode === 8 ||  // Backspace
+          keyCode === 46) { // Delete
+            return true;
+      } else {
+        event.preventDefault();
+        return false;
+      }
+    }
+
+    function validatePhone(event) {
+            // Get the pressed key code
+            var keyCode = event.keyCode || event.which;
+
+            // Allow only digits (0-9)
+            if (keyCode >= 48 && keyCode <= 57) {
+                // Check the length of the input value
+                var inputValue = event.target.value;
+                if (inputValue.length >= 10) {
+                    event.preventDefault();
+                    return false;
+                }
+            } else {
+                event.preventDefault();
+                return false;
+            }
+    }
 </script>
 {{-- <script>
        $(document).ready(function () {

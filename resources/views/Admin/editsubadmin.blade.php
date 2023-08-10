@@ -85,7 +85,7 @@
                 <div class="col=lg-6 col-md-6 col-sm-12">
                     <div class="form-group">
                     <label for="pwd">Name: <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="name" placeholder="Enter  name" name="name" value="{{$subadmin->name}}">
+                    <input type="text" class="form-control" id="name" placeholder="Enter  name" name="name" value="{{$subadmin->name}}" onkeypress="return inputOnlyText(event)">
                     </div>
                 </div>
                     @csrf
@@ -115,7 +115,7 @@
                     <div class="col=lg-6 col-md-6 col-sm-12">
                     <div class="form-group">
                     <label for="email">Contact number: <span class="text-danger">*</span></label>
-                    <input type="number" class="form-control" id="contact_number" placeholder="Enter contact number" name="contact_number" value="{{$subadmin->contact_number}}">
+                    <input type="text" class="form-control" id="contact_number" placeholder="Enter contact number" name="contact_number" value="{{$subadmin->contact_number}}" onkeypress="return validatePhone(event)">
                     </div>
                     </div>
                     <div class="col=lg-6 col-md-6 col-sm-12">
@@ -256,5 +256,39 @@
         },
        });
       });
+      function inputOnlyText(event) {
+      
+      var keyCode = event.keyCode || event.which;
+
+           
+      if ((keyCode >= 65 && keyCode <= 90) ||  // A-Z
+          (keyCode >= 97 && keyCode <= 122) || // a-z
+          keyCode === 32 || // Space
+          keyCode === 8 ||  // Backspace
+          keyCode === 46) { // Delete
+            return true;
+      } else {
+        event.preventDefault();
+        return false;
+      }
+    }
+
+    function validatePhone(event) {
+            // Get the pressed key code
+            var keyCode = event.keyCode || event.which;
+
+            // Allow only digits (0-9)
+            if (keyCode >= 48 && keyCode <= 57) {
+                // Check the length of the input value
+                var inputValue = event.target.value;
+                if (inputValue.length >= 10) {
+                    event.preventDefault();
+                    return false;
+                }
+            } else {
+                event.preventDefault();
+                return false;
+            }
+    }
     </script>
 @endsection

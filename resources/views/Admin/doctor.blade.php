@@ -113,7 +113,7 @@
                       <div class="col-lg-4 col-md-4 col-sm-12">
                         <div class="form-group name_class">
                           <label for="name">Name <span class="text-danger">*</span></label>
-                          <input type="text" name="name" placeholder="Enter enter name" class="form-control @error('name') is-invalid @enderror" id="name" >
+                          <input type="text" name="name" placeholder="Enter enter name" class="form-control @error('name') is-invalid @enderror" id="name" onkeypress="return inputOnlyText(event)">
                           @error('name')
                           <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('name') }}</strong>
@@ -884,5 +884,22 @@
         }
       
     }
+    function inputOnlyText(event) {
+      
+      var keyCode = event.keyCode || event.which;
+
+           
+      if ((keyCode >= 65 && keyCode <= 90) ||  // A-Z
+          (keyCode >= 97 && keyCode <= 122) || // a-z
+          keyCode === 32 || // Space
+          keyCode === 8 ||  // Backspace
+          keyCode === 46) { // Delete
+            return true;
+      } else {
+        event.preventDefault();
+        return false;
+      }
+    }
+
   </script>
 @endsection

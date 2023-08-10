@@ -14,40 +14,6 @@
     background-color:#ED9B2D;
     color:black;
   }
-  .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-.modal1 {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-.modal-content {
-  /* background-color: #fefefe; */
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 32% !important;
-
-}
 
 
 
@@ -324,7 +290,7 @@ div#show_voter_popup {
             <div class="col-sm-6">
               <div class="box-1">
                 <div class="image-detail">
-                  <h3>Voter Card:</h3><span><div class="img-space"><img src="{{$voter_card}}" class="openmodal myBtn"></div></span>
+                  <h3>Voter Card:</h3><span><div class="img-space"><img src="{{$voter_card}}"  class="modal-image" data-toggle="modal" data-target="#myModal"></div></span>
                     
                 </div>
               </div>
@@ -335,8 +301,8 @@ div#show_voter_popup {
                   <h3>Aadhar Card: </h3>
                   <span>
                     <div class="img-space">
-                      <img src="{{$aadhaar_card_front}}" class="openmodal myBtn">
-                      <img src="{{$aadhaar_card_back}}" style="float:right;" class="openmodal myBtn">
+                      <img src="{{$aadhaar_card_front}}" class="modal-image" data-toggle="modal" data-target="#myModal1">
+                      <img src="{{$aadhaar_card_back}}" style="float:right;" class="modal-image" data-toggle="modal" data-target="#myModal2">
                     </div>
                   </span>
                   
@@ -344,65 +310,42 @@ div#show_voter_popup {
               </div>
             </div>
           </div>
-            <div id="myModal1" class="modal">
-
-              <!-- Modal content -->
+          </div>
+          <!-- Voter Modal -->
+          <div class="modal" id="myModal">
+            <div class="modal-dialog">
               <div class="modal-content">
-                <span class="close">&times;</span>
-                <img src="{{$voter_card}}" style="height:300px;">
-              </div>
-              
-              </div>
-                            
-                               </div>
-              
-                           </div><br>
-                          
-                         
-                <!-- Trigger the modal with a button -->
-                <!-- <button class="openmodal myBtn">Open Modal</button> -->
-              
-              <!-- The Modal -->
-              <div class="modal myModal">
-              
-              <!-- Modal content -->
-              <div class="modal-content">
-              <span class="close">&times;</span>
-              <img src="{{$aadhaar_card_front}}" style="height:300px;">
-              </div>
-              </div>
-              <button class="openmodal myBtn">Open Modal</button>
-              
-              <!-- The Modal -->
-              <div class="modal showmodal">
-              
-              <!-- Modal content -->
-              <div class="modal-content">
-              <span class="close">&times;</span>
-                <img src="{{$aadhaar_card_back}}"  style="height:300px;">
-              </div>
-              </div>
-              
-              <div class="modal myModal">
-              
-              <!-- Modal content -->
-              <div class="modal-content">
-              <span class="close">&times;</span>
-              <p>Some text in the Modal2</p>
-              </div>
-              </div>
-              
-                <!-- Modal -->
-                <div id="newModal" class="modal1">
-              
-              <!-- Modal content -->
-              <div class="modal-content">
-                <span class="close">&times;</span>
-                <img src="{{$aadhaar_card_front}}" >
-              </div>
-              
-              </div>
                 
+                <div class="modal-body" >
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <img id="show_image_modal" src="{{$voter_card}}"  style="width:100%;">
+                </div>  
+              </div>  
+            </div>
+          </div>
+          <!-- Aadhaar Front -->
+          <div class="modal" id="myModal1">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                
+                <div class="modal-body" >
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <img id="show_image_modal" src="{{$aadhaar_card_front}}"  style="width:100%;">
+                </div>  
+              </div>  
+            </div>
+          </div>
+          <!-- Aadhaar Back -->
+          <div class="modal" id="myModal2">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                
+                <div class="modal-body" >
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <img id="show_image_modal" src="{{$aadhaar_card_back}}"  style="width:100%;">
+                </div>  
+              </div>  
+            </div>
           </div>
       </div>
   </div>
@@ -424,7 +367,6 @@ div#show_voter_popup {
 <!-- DataTables  & Plugins -->
 
 <!-- AdminLTE App -->
-<
 <!-- Page specific script -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
@@ -432,6 +374,8 @@ div#show_voter_popup {
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
   $(document).ready( function () {
+
+
     // alert('hh');
     var t = $('#Table_ID').DataTable({
         columnDefs: [
@@ -480,7 +424,9 @@ div#show_voter_popup {
                    location.reload();
              }
          });
-       }  
+       } 
+       
+      
    </script>
 
 
@@ -539,7 +485,7 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
-</script> --> -->
+</script> --> 
 <script>
   var modals = document.getElementsByClassName('modal');
 // Get the button that opens the modal

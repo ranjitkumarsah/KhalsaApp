@@ -862,7 +862,7 @@ th{
                 <div class="modal-body">
                     <p><span class="roomNumbers">
 
-                    </span>.</p>                               
+                    </span></p>                               
                 </div>
                
               </div>
@@ -1124,7 +1124,7 @@ th{
 
     var myRoomNumber = $(this).attr('data-image');
    
-    $('#myModal').find('.roomNumbers').html('<img src="'+myRoomNumber+'"  width="450" height="300"/>');
+    $('#myModal').find('.roomNumbers').html('<img src="'+myRoomNumber+'" style="width:100%"/>');
 });
      function show(id) {
         //  alert(id);

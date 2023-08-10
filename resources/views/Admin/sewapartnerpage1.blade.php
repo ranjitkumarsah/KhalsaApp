@@ -637,9 +637,10 @@ img#new_profile_image {
                     <td>{{$data->timings}}</td>
                     @else
                     <td>
-                      <span>From</span>&emsp;&emsp;&emsp;<span>To</span><br><br>
-                      <span>{{date('h:i A',strtotime($data->timings)) }}</span>&emsp;&emsp;
-                      <span>{{ date('h:i A',strtotime($data->timings2))}}</span>
+                      <span><b>From: </b></span>
+                      <span> {{date('h:i A',strtotime($data->timings)) }}</span>&emsp;&emsp;
+                      <span><b>To: </b></span>
+                      <span> {{ date('h:i A',strtotime($data->timings2))}}</span>
                     </td>
                     @endif
                   </tr>

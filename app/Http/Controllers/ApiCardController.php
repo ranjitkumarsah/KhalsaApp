@@ -167,7 +167,7 @@ class ApiCardController extends Controller
         }
         $feedback['add_id'] = $cardholder->card_id;
         $feedback['add_name'] = $cardholder->name;
-
+        $feedback['created_at'] =  Carbon::now();
 
         $feedback_id = DB::table('feedbacks')->insertGetId($feedback);
 
@@ -574,7 +574,7 @@ class ApiCardController extends Controller
 
 
 
-        $data = DB::table('business')->select('id', 'title', 'description','city', 'address', 'business_type', DB::raw("if(phone_number!='',phone_number,'') as phone_number"), 'created_at as date')->where('status', 1)->orderby('id', 'desc')->get();
+        $data = DB::table('business')->select('id', 'title', 'description','city', 'address', 'business_type', DB::raw("if(phone_number!='',phone_number,'') as phone_number"), 'created_at as date')->where('status', 0)->orderby('id', 'desc')->get();
         if ($data) {
             return response()->json([
                 'status' => '1',

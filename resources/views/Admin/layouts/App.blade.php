@@ -261,6 +261,10 @@
   position: sticky;
   bottom:0;
 } */
+
+p.paracolor {
+    font-size: 14px !important;
+}
 footer.main-footer {
     position: fixed;
     width: 100%;
