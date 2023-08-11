@@ -403,7 +403,7 @@
                 </a>
                 </li>
                 <li class="new">
-                  <a href="{{url('Sewapartner/blood_request')}}"  class="nav-link ">
+                  <a href="{{url('Sewapartner/blood_request')}}"  class="nav-link @yield('blood_request')">
                     <i class="fa fa-heartbeat" style="font-size:18px;"></i> 
                     <p style="margin-left: 10px;" class="paracolor">
                        Manage Blood Request

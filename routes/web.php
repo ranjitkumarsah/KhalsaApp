@@ -358,6 +358,7 @@ Route::group(['prefix'=>'Sewapartner','middleware'=>['auth:sewa']],function(){
     Route::get('feedbacks',[SewaPartnerController::class,'feedbacks']);
     Route::post('savefeedbacks',[SewaPartnerController::class,'savefeedbacks']);
     Route::get('blood_request',[SewaPartnerController::class,'blood_request']);
+    Route::get('add_blood_request',[SewaPartnerController::class,'add_blood_request']);
     Route::post('saveblood_request',[SewaPartnerController::class,'saveblood_request']);
     Route::get('customer_support',[SewaPartnerController::class,'customer_support']);
     Route::get('profile',[SewaPartnerController::class,'profile']);

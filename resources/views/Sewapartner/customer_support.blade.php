@@ -103,12 +103,12 @@ form#sub-admin-form {
                     @csrf
 
                     <div class="row">
-                      <div class="col=lg-6 col-md-6 col-sm-12">
-                        <div class="form-group">
-                          <label for="email">Contact Number:</label>
+                      <div class="col-sm-12 mt-1">
+                        
+                          <label for="email"><h4>Contact Number: <span><a href="tel:{{@$support->phone_number}}">{{@$support->phone_number}}</a></span></h4> </label>
                           {{-- <input type="number" class="form-control" id="title"  name="contact_number" value="{{$support->phone_number}}" readonly> --}}
-                          <a href="tel:{{@$support->phone_number}}" style="margin-left: 42px;font-size: xx-large">{{$support->phone_number}}</a>
-                        </div> 
+                          
+                        
                       </div>
                      
                     
@@ -122,9 +122,9 @@ form#sub-admin-form {
                   
                     </div>
 
-	             <div class="card-footer text-center">                          
-			 {{-- <button type="submit" class="btn btn-primary" style="margin-left: 20px;">Send</button> --}}
-                     </div>
+	      {{--       <div class="card-footer text-center">                          
+			  <button type="submit" class="btn btn-primary" style="margin-left: 20px;">Send</button> 
+                     </div>--}}
                     
             
                 </div>

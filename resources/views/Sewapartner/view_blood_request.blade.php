@@ -1,4 +1,4 @@
-@extends('Admin.layouts.App')
+@extends('Sewapartner.layouts.App')
 @section('blood_request','menu-open')
 @section('blood_request','active')
 <style>
@@ -66,7 +66,7 @@
             @endif
           </div>
           <div class="col-6 col-sm-6 text-right">
-            <a href="{{url('Admin/dashboard')}}"class="btn btn-primary back_btn">Back</a>
+            <a href="{{url('Subadmin/dashboard')}}"class="btn btn-primary back_btn">Back</a>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -81,20 +81,25 @@
               <!-- /.card-header -->
               <div class="card-body">
                 <div class="row">         
-           
-                  @if($segment =='pending_blood_request')
-                    <input type="hidden" class="form-control filter-select" name="status" id="status" value="Pending" >
-                  @else 
-                    <div class="col-md-3 status_class" style="margin-bottom: 15px;">
-                      <label   for="exampleInputEmail1" class="form-label ">Filter by (Request Status)</label> 
-                      <select data-coloum="0" class="form-control filter-select" name="status" id="status">
-                        
-                        <option value=''>All </option>
-                        <option  value='Pending'>Pending</option>
-                        <option value='Fulfilled'>Fulfilled</option>
-                      </select>
+                    <div class="col-sm-6">
+                        @if($segment =='pending_blood_request')
+                            <input type="hidden" class="form-control filter-select" name="status" id="status" value="Pending" >
+                        @else 
+                            <div class="col-sm-6 status_class" style="margin-bottom: 15px;">
+                            <label   for="exampleInputEmail1" class="form-label ">Filter by (Request Status)</label> 
+                            <select data-coloum="0" class="form-control filter-select" name="status" id="status">
+                                
+                                <option value=''>All </option>
+                                <option  value='Pending'>Pending</option>
+                                <option value='Fulfilled'>Fulfilled</option>
+                            </select>
+                            </div>
+                        @endif
                     </div>
-                  @endif
+                    <div class="col-sm-6">
+                        <a href="{{url('Sewapartner/add_blood_request')}}" class="btn btn-primary mt-3" style="float:right;">Add Blood Request</a>
+                    </div>
+                  
                 </div>
                 {{-- <a href="{{url('Admin/notifications')}}" class="btn btn-primary" style="float:right;">Add Notifications</a><br><br>  --}}
                 <table id="Table_ID" class="table table-responsive-sm table table-bordered table-hover" >
@@ -109,7 +114,7 @@
                    
                     <th style="width: 15px;">Blood Group</th>
                     <th style="width: 15px;">Requirement Detail</th>
-                    <th style="width: 15px;">Request Status</th> 
+                    <!-- <th style="width: 15px;">Request Status</th>  -->
                     <th style="width: 15px;">Request Fulfill/Pending</th> 
                     <th style="width: 70px;">Date</th>                  
                   
@@ -195,7 +200,7 @@
         bDestroy:true,
         stateSave:true,
         ajax: {
-          url: "{{ url('Admin/blood_request') }}",
+          url: "{{ url('Sewapartner/blood_request') }}",
           data: function (d) {
               
                 d.status=$('#status').val()
@@ -234,7 +239,7 @@
             {data: 'blood_group', name: 'blood_group'},
             {data: 'requirement_details', name: 'requirement_details'},
            
-            {data: 'active', name: 'active'},
+            // {data: 'active', name: 'active'},
             {data: 'status', name: 'status'},
             {data: 'created_at', name: 'created_at'},
             // {

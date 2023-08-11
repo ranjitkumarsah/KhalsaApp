@@ -5,6 +5,9 @@
   <!-- Content Wrapper. Contains page content -->
   @section('main_section')
   <style>
+    .menu-open i{
+      color:#fff;
+    }
     textarea#description {
     width: 100%;
   }
@@ -70,7 +73,7 @@ form#sub-admin-form {
             <h1>Add Blood Request</h1>
           </div>
           <div class="col-6 col-sm-6 text-right">
-            <a href="{{url('Sewapartner/dashboard')}}"class="btn btn-primary back_btn">Back</a>
+            <a href="{{url('Sewapartner/blood_request')}}"class="btn btn-primary back_btn">Back</a>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -100,21 +103,21 @@ form#sub-admin-form {
                     </div>
                 @endif
                 {{-- <h4 style="text-align:center;">Sub Admin Register</h4> --}}
-                <div class="card-body">
+                <div class="row card-body">
                     @csrf
-                    <div class="form-group">
+                    <div class="col-sm-6 form-group">
                       <label for="email">Patient Name:</label>
                       <input type="text" class="form-control" id="title" placeholder="Enter  Name" name="name">
                     </div>  
-                    <div class="form-group">
+                    <div class="col-sm-6 form-group">
                       <label >Address:</label>
                       <input type="text" class="form-control" id="address" placeholder="Enter  Address" name="address">
                     </div> 
-                    <div class="form-group">
+                    <div class="col-sm-6 form-group">
                       <label >Hospital Name:</label>
                       <input type="text" class="form-control" id="hospital_name" placeholder="Hospital Name" name="hospital_name">
                     </div> 
-                    <div class="form-group">
+                    <div class="col-sm-6 form-group">
                       <label for="email">Select Blood Group:</label><br>
                       <select name="blood_group" id="blood_group" style="width: 100%;height: 37px;">
                       <option value="">Select</option>
@@ -128,17 +131,17 @@ form#sub-admin-form {
                       <option value="AB-">AB-</option>
                       </select>
                     </div> 
-                    <div class="form-group">
+                    <div class="col-sm-6 form-group">
                       <label > Attendant Mobile Number (Patient Care):</label>
-                      <input type="number" class="form-control" id="contact_number" placeholder="Enter  Contact Number" name="contact_number">
+                      <input type="text" class="form-control" id="contact_number" placeholder="Enter  Contact Number" name="contact_number" onkeypress="return isNumber(event)" maxlength="10">
                     </div> 
-                    <div class="form-group">
+                    <div class="col-sm-6 form-group">
                       <label > Requirement Detail:</label>
                       <input type="text" class="form-control" id="requirement_details" placeholder="Enter Requirement Detail" name="requirement_details">
                     </div> 
                     {{-- <div class="row">
                       <div class="col=lg-6 col-md-6 col-sm-12">
-                        <div class="form-group">
+                        <div class="col-sm-6 form-group">
                           <label for="email">Patient Name:</label>
                           <input type="text" class="form-control" id="title" placeholder="Enter  Name" name="name">
                         </div> 
@@ -159,7 +162,7 @@ form#sub-admin-form {
                           
                         </div>
                         <div class="col=lg-6 col-md-6 col-sm-12">
-                          <div class="form-group">
+                          <div class="col-sm-6 form-group">
                             <label for="email">Select Blood Group:</label><br>
                             <select name="blood_group" id="blood_group" style="width: 100%;height: 37px;">
                             <option value="">Select</option>
@@ -179,7 +182,7 @@ form#sub-admin-form {
                         <div class="col=lg-6 col-md-6 col-sm-12">
                           
                             <label > Attendant Mobile Number (Patient Care):</label>
-                            <input type="number" class="form-control" id="contact_number" placeholder="Enter  Contact Number" name="contact_number">
+                            <input type="text" class="form-control" id="contact_number" placeholder="Enter  Contact Number" name="contact_number" onkeypress="return isNumber(event)" maxlength="10">
                           
                         </div>
                         <div class="col=lg-6 col-md-6 col-sm-12">
@@ -281,5 +284,14 @@ form#sub-admin-form {
         },
        });
       });
+
+      function isNumber(evt) {
+        evt = (evt) ? evt : window.event;
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        return true;
+      }
     </script>
 @endsection

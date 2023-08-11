@@ -11,6 +11,7 @@ use App\Mail\SendMail;
 use DB;
 use Auth;
 use Session;
+use DataTables;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Support\Facades\Validator;
 use Toastr;
@@ -451,9 +452,49 @@ public function editaccountdetail($id)
       ]);          
       }
   }
-  public function blood_request()
-  {
+  public function add_blood_request() {
+    
     return view('Sewapartner.blood_request');
+  }
+  public function blood_request(Request $request)
+  {
+    DB::statement(DB::raw('set @rownum=0'));
+    if($request->status == "Pending"){
+      $data = DB::table('request_blood')->select("request_blood.*",DB::raw('@rownum  := @rownum  + 1 AS rownum'))->where([['status',0],['added_by',Auth::user()->id],['add_type','Sewapartner']])->orderby('id','desc')->get();
+    }
+    elseif($request->status == "Fulfilled"){
+      $data = DB::table('request_blood')->select("request_blood.*",DB::raw('@rownum  := @rownum  + 1 AS rownum'))->where([['status',1],['added_by',Auth::user()->id],['add_type','Sewapartner']])->orderby('id','desc')->get();
+    }
+   
+    else{
+      $data = DB::table('request_blood')->select("request_blood.*",DB::raw('@rownum  := @rownum  + 1 AS rownum'))->where([['added_by',Auth::user()->id],['add_type','Sewapartner']])->orderby('id','desc')->get();
+    }
+    
+    // dd($data);
+    if ($request->ajax()) {
+      // dd($data);
+      return Datatables::of($data)
+          ->addIndexColumn()
+        
+    
+            ->addColumn('active', function($row){
+            $active = $row->status == 1 ? "<button class='on' id='active' onclick='show($row->id)'><i class='fa-solid fa-toggle-on' ></i></button>":
+            "<button class='on' id='inactive' onclick='show($row->id)'><i class='fa-solid fa-toggle-off' ></i></button>";
+            return $active;
+        })
+        ->addColumn('status', function($row){
+          $status=$row->status == 1 ? "Fulfilled" : "Pending";
+          return $status;
+      })
+
+
+      ->rawColumns(['status','active'])
+      ->make(true);
+    }
+      
+    return view('Sewapartner.view_blood_request');
+      
+       
   }
   public  function saveblood_request(Request $request){
   
@@ -482,6 +523,9 @@ public function editaccountdetail($id)
        $blood['blood_group'] = $request->blood_group;
        $blood['contact_number'] = $request->contact_number;
        $blood['requirement_details'] = $request->requirement_details;
+
+       $blood['added_by'] = Auth::user()->id;
+       $blood['add_type'] = 'Sewapartner';
        $blood['created_at'] = Carbon::now();
       
     
