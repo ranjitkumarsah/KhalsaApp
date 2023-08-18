@@ -188,7 +188,7 @@ h1 {
         <div class="modal-body">
           <p><span class="roomNumbers">
 
-          </span>.</p>                               
+          </span></p>                               
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
@@ -348,7 +348,7 @@ $('.dynamic_view').click(function() {
       '</tr>'+
       '<tr>'+
         '<th style="color:#212529 !important; text-align:left !important; padding-bottom: 25px;">Description:</th>'+
-        '<td style="width:60%; padding-bottom: 25px;">'+description+'</td>'+
+        '<td style="width:80%;     word-break: break-all; padding-bottom: 25px;">'+description+'</td>'+
       '</tr>'+
       '<tr>'+
         '<th style="color:#212529 !important; text-align:left !important;">Image:</th>'+

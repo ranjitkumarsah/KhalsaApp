@@ -295,7 +295,7 @@
                 searchable: false
             },
         ],
-        order: [ [1, 'desc'] ]
+        order: [ [0, 'desc'] ]
     });
        
          

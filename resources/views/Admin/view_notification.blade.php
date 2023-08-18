@@ -134,7 +134,7 @@ th{
                     <th  >Description</th>                  
                     <th >Location</th>                  
                     <th >Image</th>
-                    <th >Date</th>
+                    <th style="width:90px;">Date</th>
                     <th >Approve / Decline</th>
                   </tr>
                   </thead>

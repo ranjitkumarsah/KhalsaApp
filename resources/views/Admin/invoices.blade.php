@@ -165,7 +165,7 @@
                       <th>Discount</th>
                     
                       <th>Amount</th>
-                      <th>Date</th>
+                      <th style="width:70px;">Date</th>
                       <th>Action</th>
                     
                     </tr>
@@ -329,7 +329,7 @@
             {data: 'details', name: 'details'},
           
         ],
-        order: [ [1, 'desc'] ]
+        order: [ [0, 'desc'] ]
     });
         
          $('#filter_date').click(function(){

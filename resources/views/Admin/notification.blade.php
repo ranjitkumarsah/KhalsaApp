@@ -11,6 +11,14 @@
       border-radius: 4px;
       height: 38px;
     }
+    .select2-container--default .select2-dropdown .select2-search__field:focus, .select2-container--default .select2-search--inline .select2-search__field:focus {
+            outline: 0;
+            border: none;
+        }
+        span.select2-selection__choice__display {
+            /* background-color: #E13C06 !important; */
+            color: #000 !important;
+        }
   span.select2-selection.select2-selection--multiple {
     height: 100%;
     border: 1px solid #0b528f;

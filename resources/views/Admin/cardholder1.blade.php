@@ -679,7 +679,7 @@
                       <div class="col-lg-2 col-sm-12 ">
                         <div class="form-group">
                           <label for="caadhaar">Aadhaar Card No</label>
-                          <input type="text" name="caadhaar[]" placeholder="Aadhaar bumner"  onkeypress="return isNumber(event)" maxlength="12" class="form-control">
+                          <input type="text" name="caadhaar[]" placeholder="Aadhaar number"  onkeypress="return isNumber(event)" maxlength="12" class="form-control">
                         </div>
                       </div>
                       <div class="col-lg-2 col-sm-12">

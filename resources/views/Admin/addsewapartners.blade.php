@@ -12,7 +12,10 @@
         section.content {
             background-color: #F5DDBD;
         }
-
+        .select2-container--default .select2-dropdown .select2-search__field:focus, .select2-container--default .select2-search--inline .select2-search__field:focus {
+            outline: 0;
+            border: none;
+        }
         a.btn.btn-primary.back_btn {
             background-color: #ED9B2D;
             color: black;

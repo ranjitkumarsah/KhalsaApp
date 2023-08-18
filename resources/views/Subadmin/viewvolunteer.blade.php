@@ -276,7 +276,7 @@
             },
          
         ],
-        order: [ [1, 'desc'] ]
+        order: [ [0, 'desc'] ]
     });
         
          $('#filter_date').click(function(){

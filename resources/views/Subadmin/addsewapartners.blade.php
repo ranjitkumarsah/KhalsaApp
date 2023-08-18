@@ -14,7 +14,11 @@
             border-radius: 4px;
             height: 38px;
         }
-
+        .select2-container--default .select2-dropdown .select2-search__field:focus, .select2-container--default .select2-search--inline .select2-search__field:focus {
+            outline: 0;
+            border: none;
+        }
+       
 
         textarea.select2-search__field {
             height: 26px !important;
