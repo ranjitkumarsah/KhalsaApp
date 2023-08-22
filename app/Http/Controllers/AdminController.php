@@ -310,39 +310,44 @@ class AdminController extends Controller
         $card['created_at'] = Carbon::now();
         DB::table('cardsdata')->insert($card);
 
-        for($i=0;$i<count($request->fname);$i++){
+        if($request->fname) {
+          for($i=0;$i<count($request->fname);$i++){
          
-          DB::table('cardholder_family')->insert([
-            'cardholder_id'  => $family_id,
-            'fname'    => $request->fname[$i],
-            'famritdhari'    => $request->famritdhari[$i],
-            'fage'    => $request->fage[$i],
-            'fblood_group'    => $request->fblood_group[$i],
-            'fqualification'    => $request->fqualification[$i],
-            'fjob'    => $request->fjob[$i],
-            'fsalary'    => $request->fsalary[$i],                      
-            'faadhaar'    => $request->faadhaar[$i],                      
-            'frelation'    => $request->frelation[$i],  
-            'created_at' => Carbon::now(),                   
-          ]);  
+            DB::table('cardholder_family')->insert([
+              'cardholder_id'  => $family_id,
+              'fname'    => $request->fname[$i],
+              'famritdhari'    => $request->famritdhari[$i],
+              'fage'    => $request->fage[$i],
+              'fblood_group'    => $request->fblood_group[$i],
+              'fqualification'    => $request->fqualification[$i],
+              'fjob'    => $request->fjob[$i],
+              'fsalary'    => $request->fsalary[$i],                      
+              'faadhaar'    => $request->faadhaar[$i],                      
+              'frelation'    => $request->frelation[$i],  
+              'created_at' => Carbon::now(),                   
+            ]);  
+           
+          }
+        }
+        if($request->cname) {
+          for($i=0;$i<count($request->cname);$i++){
+            DB::table('cardholder_children')->insert([
+              'cardholder_id'  => $family_id,
+              'cname'    => $request->cname[$i],
+              'camritdhari'    => $request->camritdhari[$i],
+              'cage'    => $request->cage[$i],
+              'cqualification'    => $request->cqualification[$i],
+              'cfees'    => $request->cfees[$i],
+              'cschool'    => $request->cschool[$i], 
+              'caadhaar'    => $request->caadhaar[$i],                      
+              'crelation'    => $request->crelation[$i],                      
+              'created_at' => Carbon::now(),                   
+  
+            ]);  
          
+          }
         }
-        for($i=0;$i<count($request->cname);$i++){
-          DB::table('cardholder_children')->insert([
-            'cardholder_id'  => $family_id,
-            'cname'    => $request->cname[$i],
-            'camritdhari'    => $request->camritdhari[$i],
-            'cage'    => $request->cage[$i],
-            'cqualification'    => $request->cqualification[$i],
-            'cfees'    => $request->cfees[$i],
-            'cschool'    => $request->cschool[$i], 
-            'caadhaar'    => $request->caadhaar[$i],                      
-            'crelation'    => $request->crelation[$i],                      
-            'created_at' => Carbon::now(),                   
-
-          ]);  
-       
-        }
+        
       }
      
       if($request->granthi){
