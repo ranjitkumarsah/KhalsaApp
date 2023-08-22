@@ -183,6 +183,11 @@ margin-bottom: 20px !important;
     margin-left: 0px !important;
 }
 }
+a.btn.btn-primary.back_btn{
+      background-color:#ED9B2D;
+      color:black;
+      float: right;
+    }
   </style>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -193,6 +198,9 @@ margin-bottom: 20px !important;
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1>Khalsa Card Membership Form</h1>
+          </div>
+          <div class="col-sm-6">
+            <a href="{{url('Admin/viewcardholder')}}"class="btn btn-primary back_btn">Back</a>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
