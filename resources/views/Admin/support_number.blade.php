@@ -105,7 +105,7 @@ form#sub-admin-form {
                       <div class="col=lg-6 col-md-6 col-sm-12">
                         <div class="form-group">
                           <label for="email">Phone Number:</label>
-                          <input type="text" class="form-control" id="title" placeholder="Enter  Phone Number" name="phone_number" value="{{ $support ? $support->phone_number : '' }}">
+                          <input type="text" class="form-control" id="title" placeholder="Enter  Phone Number" name="phone_number" value="{{ $support ? $support->phone_number : '' }}" onkeypress="return validatePhone(event)">
                         </div> 
                       </div>
                      
@@ -203,5 +203,23 @@ form#sub-admin-form {
         },
        });
       });
+
+      function validatePhone(event) {
+            // Get the pressed key code
+            var keyCode = event.keyCode || event.which;
+
+            // Allow only digits (0-9)
+            if (keyCode >= 48 && keyCode <= 57) {
+                // Check the length of the input value
+                var inputValue = event.target.value;
+                if (inputValue.length >= 10) {
+                    event.preventDefault();
+                    return false;
+                }
+            } else {
+                event.preventDefault();
+                return false;
+            }
+    }
     </script>
 @endsection

@@ -251,7 +251,7 @@ margin-bottom: 20px !important;
                   <div class="col-lg-4 col-md-4 col-sm-12">
                     <div class="form-group">
                       <label for="pwd">Aadhaar Number</label>
-                      <input type="number" class="form-control" max="12" id="faadhaar" name="faadhaar" value="{{$card_family->faadhaar}}">
+                      <input type="text" class="form-control" id="faadhaar" name="faadhaar" value="{{$card_family->faadhaar}}" onkeypress="return isNumber(event)" maxlength="12" >
                     </div>
                   </div>
                 </div>
@@ -412,6 +412,14 @@ margin-bottom: 20px !important;
       });
     });
   });
+  function isNumber(evt) {
+    evt = (evt) ? evt : window.event;
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false;
+    }
+    return true;
+  }
   </script>
   
 @endsection
