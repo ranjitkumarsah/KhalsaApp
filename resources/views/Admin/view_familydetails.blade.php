@@ -62,8 +62,8 @@ table.dataTable.no-footer th{
                   <thead>
                   <tr>
                   <th style="width: 15px;">Id</th>
+                  <th style="width: 15px;">Card Id</th>                     
                     <th style="width: 15px;">Name</th>                     
-                    <th style="width: 15px;">Card Id</th>                     
                     <th style="width: 15px;">Amritdhari</th>                  
                     <th style="width: 70px;">Age</th>
                     <th style="width: 70px;">Aadhaar Number</th>

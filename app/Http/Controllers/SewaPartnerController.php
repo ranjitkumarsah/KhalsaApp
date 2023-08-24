@@ -105,6 +105,7 @@ class SewaPartnerController extends Controller
     // ->whereYear('created_at', date('Y'))
     // ->groupBy('monthname')
     // ->pluck('count');
+    
     $current_year = Carbon::now()->year;
     $current_month = Carbon::now()->month;
     $volunt = [];
@@ -161,6 +162,19 @@ class SewaPartnerController extends Controller
    }
 
    public function addcardholderdatas(Request $request){
+
+    $validator = Validator::make($request->all(), [            
+            
+      'id' => 'required',
+    ]);
+  
+      if ($validator->fails()) { 
+        
+          return response()->json([
+              'status'=>'0',
+              'message'=>$validator->errors()->first(),
+          ]);           
+      }
     $send_id = $request->get('id');
     $cardholder_datas = DB::table('cardholder')->where('card_id',$send_id)->first();
     $familydata = []; 

@@ -126,6 +126,7 @@
                   <button type="submit" class="btn btn-primary"  id="submitForm">Submit</button>
                 </div>
                 
+                
              
                 <div class="showdetailsform ml-4">
                   <div class="row">
@@ -541,11 +542,11 @@
 $(document).ready(function () {
   $('#consultation-form').on('submit', function(event){
     // $(".error").remove();  
-    var sewa_id = $('#sewa_id').val();
-    if (sewa_id.length < 1) {  
-     $('.cardholder-submit-row').after('<span class="text-danger">Cardholder id is required</span>');  
-     return false;
-    }
+    // var sewa_id = $('#sewa_id').val();
+    // if (sewa_id.length < 1) {  
+    //  $('.cardholder-submit-row').after('<span class="text-danger">Cardholder id is required</span>');  
+    //  return false;
+    // }
         
         
     });

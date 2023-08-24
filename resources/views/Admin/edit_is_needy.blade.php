@@ -347,7 +347,7 @@
                           </div>
                           <div class="col-lg-6 col-md-6 col-sm-12" id="readonly" >
                             <label>If yes mention amount </label><br>
-                            <input type="text" class="form-control" name="help_amount"  onkeypress="return isNumber(event)" readonly>
+                            <input type="text" class="form-control" name="help_amount"  onkeypress="return isNumber(event)" disabled>
                           </div>
 
                             <!-- <div class="col-lg-6 col-md-6 col-sm-12 mt-2">
@@ -1014,7 +1014,14 @@
         }
       }
     }
-
+    function isNumber(evt) {
+      evt = (evt) ? evt : window.event;
+      var charCode = (evt.which) ? evt.which : evt.keyCode;
+      if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+          return false;
+      }
+      return true;
+    }
     function showHideAad(that) {
       var hiddenBrowserFiles = document.getElementsByName("aadhaar_card[]");
     

@@ -333,7 +333,7 @@ Route::group(['prefix' => 'Sewapartner'], function () {
 });
 
 
-Route::group(['prefix'=>'Sewapartner','middleware'=>['auth:sewa']],function(){
+Route::group(['prefix'=>'Sewapartner', 'middleware' => ['auth:sewa', 'verifySewaActive']],function(){
 
     
     Route::get('dashboard', [SewaPartnerController::class, 'dashboard']);

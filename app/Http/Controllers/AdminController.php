@@ -310,9 +310,8 @@ class AdminController extends Controller
         $card['created_at'] = Carbon::now();
         DB::table('cardsdata')->insert($card);
 
-        if($request->fname) {
-          for($i=0;$i<count($request->fname);$i++){
-         
+        for($i=0;$i<count($request->fname);$i++){
+          if($request->fname[$i]) {
             DB::table('cardholder_family')->insert([
               'cardholder_id'  => $family_id,
               'fname'    => $request->fname[$i],
@@ -326,27 +325,28 @@ class AdminController extends Controller
               'frelation'    => $request->frelation[$i],  
               'created_at' => Carbon::now(),                   
             ]);  
-           
           }
         }
-        if($request->cname) {
+
+
           for($i=0;$i<count($request->cname);$i++){
-            DB::table('cardholder_children')->insert([
-              'cardholder_id'  => $family_id,
-              'cname'    => $request->cname[$i],
-              'camritdhari'    => $request->camritdhari[$i],
-              'cage'    => $request->cage[$i],
-              'cqualification'    => $request->cqualification[$i],
-              'cfees'    => $request->cfees[$i],
-              'cschool'    => $request->cschool[$i], 
-              'caadhaar'    => $request->caadhaar[$i],                      
-              'crelation'    => $request->crelation[$i],                      
-              'created_at' => Carbon::now(),                   
-  
-            ]);  
-         
+
+            if($request->cname[$i]) {
+              DB::table('cardholder_children')->insert([
+                'cardholder_id'  => $family_id,
+                'cname'    => $request->cname[$i],
+                'camritdhari'    => $request->camritdhari[$i],
+                'cage'    => $request->cage[$i],
+                'cqualification'    => $request->cqualification[$i],
+                'cfees'    => $request->cfees[$i],
+                'cschool'    => $request->cschool[$i], 
+                'caadhaar'    => $request->caadhaar[$i],                      
+                'crelation'    => $request->crelation[$i],                      
+                'created_at' => Carbon::now(),                   
+    
+              ]);  
+            }
           }
-        }
         
       }
      
@@ -916,6 +916,7 @@ class AdminController extends Controller
     if($request->get('range')  && $request->get('from_date') && $request->get('to_date') ) {
       $from_date = $request->get('from_date');
       $to_date = $request->get('to_date');
+      $to_date = Carbon::parse($to_date)->addDay()->format('Y-m-d');
 
       if($request->get('range')=='today'){
         $cardholder = DB::table('cardholder')->select("cardholder.*",DB::raw('@rownum  := @rownum  + 1 AS rownum'))
@@ -1016,6 +1017,8 @@ class AdminController extends Controller
     elseif($request->get('from_date') && $request->get('to_date')) {
       $from_date = $request->get('from_date');
       $to_date = $request->get('to_date');
+      $to_date = Carbon::parse($to_date)->addDay()->format('Y-m-d');
+
       $cardholder = DB::table('cardholder')->select("cardholder.*",DB::raw('@rownum  := @rownum  + 1 AS rownum'))
       ->whereBetween('cardholder.created_at', array($from_date, $to_date))
       ->orderBy("id", 'desc')->get();  
@@ -1026,6 +1029,7 @@ class AdminController extends Controller
 
       $from_date = $request->get('from_date');
       $to_date = $request->get('to_date');
+      $to_date = Carbon::parse($to_date)->addDay()->format('Y-m-d');
 
       $cardholder = DB::table('cardholder')->select("cardholder.*",DB::raw('@rownum  := @rownum  + 1 AS rownum'))
       ->where('cardholder.is_needy',$is_needy)
@@ -1115,6 +1119,7 @@ class AdminController extends Controller
     if($request->get('range')  && $request->get('from_date') && $request->get('to_date') ) {
       $from_date = $request->get('from_date');
       $to_date = $request->get('to_date');
+      $to_date = Carbon::parse($to_date)->addDay()->format('Y-m-d');
 
       if($request->get('range')=='today'){
         $cardholder = DB::table('cardholder')->select("cardholder.*",DB::raw('@rownum  := @rownum  + 1 AS rownum'))
@@ -1186,6 +1191,7 @@ class AdminController extends Controller
     elseif($request->get('from_date') && $request->get('to_date')) {
       $from_date = $request->get('from_date');
       $to_date = $request->get('to_date');
+      $to_date = Carbon::parse($to_date)->addDay()->format('Y-m-d');
       $cardholder = DB::table('cardholder')->select("cardholder.*",DB::raw('@rownum  := @rownum  + 1 AS rownum'))
         ->where('active_status',1)
         ->whereBetween('cardholder.created_at', array($from_date, $to_date))
@@ -1265,7 +1271,7 @@ class AdminController extends Controller
     if($request->get('range')  && $request->get('from_date') && $request->get('to_date') ) {
       $from_date = $request->get('from_date');
       $to_date = $request->get('to_date');
-
+      $to_date = Carbon::parse($to_date)->addDay()->format('Y-m-d');
       if($request->get('range')=='today'){
         $cardholder = DB::table('cardholder')->select("cardholder.*",DB::raw('@rownum  := @rownum  + 1 AS rownum'))
         ->where('active_status',0)
@@ -1336,6 +1342,7 @@ class AdminController extends Controller
     elseif($request->get('from_date') && $request->get('to_date')) {
       $from_date = $request->get('from_date');
       $to_date = $request->get('to_date');
+      $to_date = Carbon::parse($to_date)->addDay()->format('Y-m-d');
       $cardholder = DB::table('cardholder')->select("cardholder.*",DB::raw('@rownum  := @rownum  + 1 AS rownum'))
         ->where('active_status',0)
         ->whereBetween('cardholder.created_at', array($from_date, $to_date))
@@ -3903,7 +3910,6 @@ class AdminController extends Controller
              return response()->json([
                 'status'=>'0',
                 'message'=>$validator->errors()->first(),
-                'data'=>$x
             ]);           
          }
        $cardholder['fname'] = $request->fname;  
@@ -3948,7 +3954,6 @@ class AdminController extends Controller
              return response()->json([
                 'status'=>'0',
                 'message'=>$validator->errors()->first(),
-                'data'=>$x
             ]);           
          }
        $cardholder['cname'] = $request->cname;  
@@ -4200,7 +4205,7 @@ class AdminController extends Controller
    {
     // dd($request->all());
     $validator = Validator::make($request->all(), [ 
-        // 'name'         => 'required',
+        'fname.*'         => 'required',
       
         ]);  
         if ( $validator->fails()) { 
@@ -4212,22 +4217,22 @@ class AdminController extends Controller
       $family_id = $id;
       if($family_id){
         for($i=0;$i<count($request->fname);$i++){
-         
-          DB::table('cardholder_family')->insert([
-            'cardholder_id'  => $family_id,
-            'fname'    => $request->fname[$i],
-            'famritdhari'    => $request->famritdhari[$i],
-            'fage'    => $request->fage[$i],
-            'fblood_group'    => $request->fblood_group[$i],
-            'fqualification'    => $request->fqualification[$i],
-            'fjob'    => $request->fjob[$i],
-            'fsalary'    => $request->fsalary[$i],                      
-            'faadhaar'    => $request->faadhaar[$i],                      
-            'frelation'    => $request->frelation[$i], 
-            'created_at' => Carbon::now(),                   
-                     
-          ]);  
-         
+          if($request->fname[$i]) {
+            DB::table('cardholder_family')->insert([
+              'cardholder_id'  => $family_id,
+              'fname'    => $request->fname[$i],
+              'famritdhari'    => $request->famritdhari[$i],
+              'fage'    => $request->fage[$i],
+              'fblood_group'    => $request->fblood_group[$i],
+              'fqualification'    => $request->fqualification[$i],
+              'fjob'    => $request->fjob[$i],
+              'fsalary'    => $request->fsalary[$i],                      
+              'faadhaar'    => $request->faadhaar[$i],                      
+              'frelation'    => $request->frelation[$i], 
+              'created_at' => Carbon::now(),                   
+                      
+            ]);  
+          }
       }
     //   for($i=0;$i<count($request->cname);$i++){
        
@@ -4262,7 +4267,7 @@ class AdminController extends Controller
   {
     //  dd($request->all());
    $validator = Validator::make($request->all(), [ 
-       // 'name'         => 'required',
+       'cname.*'         => 'required',
      
        ]);  
        if ( $validator->fails()) { 
@@ -4286,23 +4291,23 @@ class AdminController extends Controller
     //      ]);  
         
     //  }
-     for($i=0;$i<count($request->cname);$i++){
-      
-       DB::table('cardholder_children')->insert([
-         'cardholder_id'  => $family_id,
-         'cname'    => $request->cname[$i],
-         'camritdhari'    => $request->camritdhari[$i],
-         'cage'    => $request->cage[$i],
-         'cqualification'    => $request->cqualification[$i],
-         'cfees'    => $request->cfees[$i],
-         'cschool'    => $request->cschool[$i],                      
-         'caadhaar'    => $request->caadhaar[$i],                      
-         'crelation'    => $request->crelation[$i], 
-         'created_at' => Carbon::now(),                   
-                     
-       ]);  
-      
-   }
+      for($i=0;$i<count($request->cname);$i++){
+        if($request->cname[$i]) {
+          DB::table('cardholder_children')->insert([
+            'cardholder_id'  => $family_id,
+            'cname'    => $request->cname[$i],
+            'camritdhari'    => $request->camritdhari[$i],
+            'cage'    => $request->cage[$i],
+            'cqualification'    => $request->cqualification[$i],
+            'cfees'    => $request->cfees[$i],
+            'cschool'    => $request->cschool[$i],                      
+            'caadhaar'    => $request->caadhaar[$i],                      
+            'crelation'    => $request->crelation[$i], 
+            'created_at' => Carbon::now(),                   
+                        
+          ]);  
+        }
+      }
    
 
      }
