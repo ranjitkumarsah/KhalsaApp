@@ -24,6 +24,11 @@
     font-size: 0.9rem;
     text-align: center !important;
   }
+  a.btn.btn-primary.back_btn {
+    float: right;
+    background-color: #ED9B2D;
+    color: black;
+  }
 </style>
   <!-- Content Wrapper. Contains page content -->
   @section('main_section')
@@ -36,6 +41,9 @@
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1>Manage Children Details</h1>
+          </div>
+          <div class="col-sm-6">
+           <a href="{{url('Admin/viewcardholder')}}" class="btn btn-primary back_btn">Back</a>
           </div>
         </div>
       </div><!-- /.container-fluid -->

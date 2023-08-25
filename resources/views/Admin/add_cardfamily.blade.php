@@ -285,7 +285,7 @@ margin-bottom: 20px !important;
         <div class="col-lg-2 col-sm-12 ">
           <div class="form-group">
             <label for="fname">Name</label>  
-            <input type="text" name="fname[]"  class="form-control fname">
+            <input type="text" name="name[]"  class="form-control fname">
           </div>
         </div>
         <div class="col-lg-1 col-sm-12 ">
@@ -379,7 +379,7 @@ margin-bottom: 20px !important;
           <th>Relation</th>
         </tr>
         <tr>
-          <td><input type="text" name="fname[]" class="form-control fname"></td>
+          <td><input type="text" name="name[]" class="form-control fname"></td>
           <td> <select  id="select_amritdhari" class="form-control" name="famritdhari[]">
             <option value="Yes">Yes</option>
             <option value="No">No</option>
@@ -451,7 +451,7 @@ margin-bottom: 20px !important;
                       <th>Salary</th>
                     </tr>
                     <tr>
-                      <td><input type="text" name="cname[]"  class="form-control"></td>
+                      <td><input type="text" name="name[]"  class="form-control"></td>
                       <td> <select  id="select_amritdhari" class="form-control" name="camritdhari[]">
                         <option value="1">Yes</option>
                         <option value="0">No</option>
@@ -683,8 +683,8 @@ margin-bottom: 20px !important;
         <div class="row mx-2 family-details" id="FR${++rowIdx}">
           <div class="col-lg-2 col-sm-12 ">
             <div class="form-group">
-              <label for="fname">Name</label>  
-              <input type="text" name="fname[]"  class="form-control fname">
+              <label for="name">Name</label>  
+              <input type="text" name="name[]"  class="form-control fname">
             </div>
           </div>
           <div class="col-lg-1 col-sm-12 ">
@@ -825,7 +825,7 @@ margin-bottom: 20px !important;
       // Adding a row inside the tbody.
       $('#table_class').append(`<tr id="R${++rowIdx}">
             <td class="row-index text-center">
-            <input type="text" name="cname[]" class="form-control"></td>
+            <input type="text" name="name[]" class="form-control"></td>
             <td class="row-index text-center">
             <select  id="select_amritdhari" class="form-control" name="camritdhari[]">
                 <option value="Yes">Yes</option>

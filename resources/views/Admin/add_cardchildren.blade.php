@@ -299,8 +299,8 @@ margin-bottom: 20px !important;
                   <div class="row mx-2 children-details">
                     <div class="col-lg-2 col-sm-12 ">
                       <div class="form-group">
-                        <label for="cname">Name</label>  
-                        <input type="text" name="cname[]"  class="form-control cname">
+                        <label for="name">Name</label>  
+                        <input type="text" name="name[]"  class="form-control cname">
                       </div>
                     </div>
                     <div class="col-lg-1 col-sm-12 ">
@@ -376,7 +376,7 @@ margin-bottom: 20px !important;
                       <th>Relation</th>
                     </tr>
                     <tr>
-                      <td><input type="text" name="cname[]"  class="form-control cname"></td>
+                      <td><input type="text" name="name[]"  class="form-control cname"></td>
                       <td> <select  id="select_amritdhari" class="form-control" name="camritdhari[]">
                         <option value="">Select</option>
                         <option value="Yes">Yes</option>
@@ -529,7 +529,7 @@ margin-bottom: 20px !important;
       // Adding a row inside the tbody.
       $('#tbody').append(`<tr id="R${++rowIdx}">
             <td class="row-index text-center">
-            <input type="text" name="fname[]" class="form-control"></td>
+            <input type="text" name="name[]" class="form-control"></td>
             <td class="row-index text-center">
             <select  id="select_amritdhari" class="form-control" name="famritdhari[]">
                 <option value="Yes">Yes</option>
@@ -562,8 +562,8 @@ margin-bottom: 20px !important;
       <div class="row mx-2 children-details" id ="CR${++rowIdx}">
         <div class="col-lg-2 col-sm-12 ">
           <div class="form-group">
-            <label for="cname">Name</label>  
-            <input type="text" name="cname[]"  class="form-control cname">
+            <label for="name">Name</label>  
+            <input type="text" name="name[]"  class="form-control cname">
           </div>
         </div>
         <div class="col-lg-1 col-sm-12 ">

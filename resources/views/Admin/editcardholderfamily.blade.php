@@ -229,7 +229,7 @@ margin-bottom: 20px !important;
                   <div class="col-lg-4 col-md-4 col-sm-12">
                     <div class="form-group">
                       <label for="pwd">Name</label>
-                      <input type="text" class="form-control" id="fname" name="fname" value="{{$card_family->fname}}">
+                      <input type="text" class="form-control" id="fname" name="name" value="{{$card_family->fname}}">
                     </div>
                   </div>
                   <input type="hidden" class="form-control" id="card_family_id" name="card_family_id" value="{{$card_family->id}}">

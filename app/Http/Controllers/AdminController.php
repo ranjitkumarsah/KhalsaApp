@@ -2533,16 +2533,16 @@ class AdminController extends Controller
       if($devtype ==1){
         $fields = (object) [
               "to" =>$device_token,
-               "notification" => (object) [
-                  "title"     => $title,             
-                  "body"        => $description,
-                  "location"        => $location,
-                  // "description" => $description,               
-                  "requestStatus" => $req_status,
-                  "vibrate"   => "default",
-                  "sound"     => "default",
-                  "badge"     =>  $badge
-                ],
+              //  "notification" => (object) [
+              //     "title"     => $title,             
+              //     "body"        => $description,
+              //     "location"        => $location,
+              //     // "description" => $description,               
+              //     "requestStatus" => $req_status,
+              //     "vibrate"   => "default",
+              //     "sound"     => "default",
+              //     "badge"     =>  $badge
+              //   ],
               "data" => (object) [
                 // "requestID"   => $rid,
                 "title"     => $title,
@@ -3900,7 +3900,7 @@ class AdminController extends Controller
         
         $validator = Validator::make($request->all(), [            
             
-            'fname' => 'required',
+            'name' => 'required',
           
             
         ]);
@@ -3912,7 +3912,7 @@ class AdminController extends Controller
                 'message'=>$validator->errors()->first(),
             ]);           
          }
-       $cardholder['fname'] = $request->fname;  
+       $cardholder['fname'] = $request->name;  
        $cardholder['famritdhari'] = $request->famritdhari;  
        $cardholder['fage'] = $request->fage;  
        $cardholder['fqualification'] = $request->fqualification;  
@@ -3944,7 +3944,7 @@ class AdminController extends Controller
         
         $validator = Validator::make($request->all(), [            
             
-            'cname' => 'required',
+            'name' => 'required',
           
             
         ]);
@@ -3956,7 +3956,7 @@ class AdminController extends Controller
                 'message'=>$validator->errors()->first(),
             ]);           
          }
-       $cardholder['cname'] = $request->cname;  
+       $cardholder['cname'] = $request->name;  
        $cardholder['camritdhari'] = $request->camritdhari;  
        $cardholder['cage'] = $request->cage;  
        $cardholder['cqualification'] = $request->cqualification;  
@@ -4205,7 +4205,7 @@ class AdminController extends Controller
    {
     // dd($request->all());
     $validator = Validator::make($request->all(), [ 
-        'fname.*'         => 'required',
+        'name.*'         => 'required',
       
         ]);  
         if ( $validator->fails()) { 
@@ -4216,11 +4216,11 @@ class AdminController extends Controller
       } 
       $family_id = $id;
       if($family_id){
-        for($i=0;$i<count($request->fname);$i++){
-          if($request->fname[$i]) {
+        for($i=0;$i<count($request->name);$i++){
+          if($request->name[$i]) {
             DB::table('cardholder_family')->insert([
               'cardholder_id'  => $family_id,
-              'fname'    => $request->fname[$i],
+              'fname'    => $request->name[$i],
               'famritdhari'    => $request->famritdhari[$i],
               'fage'    => $request->fage[$i],
               'fblood_group'    => $request->fblood_group[$i],
@@ -4267,7 +4267,7 @@ class AdminController extends Controller
   {
     //  dd($request->all());
    $validator = Validator::make($request->all(), [ 
-       'cname.*'         => 'required',
+       'name.*'         => 'required',
      
        ]);  
        if ( $validator->fails()) { 
@@ -4291,11 +4291,11 @@ class AdminController extends Controller
     //      ]);  
         
     //  }
-      for($i=0;$i<count($request->cname);$i++){
-        if($request->cname[$i]) {
+      for($i=0;$i<count($request->name);$i++){
+        if($request->name[$i]) {
           DB::table('cardholder_children')->insert([
             'cardholder_id'  => $family_id,
-            'cname'    => $request->cname[$i],
+            'cname'    => $request->name[$i],
             'camritdhari'    => $request->camritdhari[$i],
             'cage'    => $request->cage[$i],
             'cqualification'    => $request->cqualification[$i],

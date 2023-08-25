@@ -239,7 +239,7 @@ a.btn.btn-primary.back_btn{
                     <div class="col-lg-4 col-md-4 col-sm-12">
                     <div class="form-group">
                     <label for="pwd">Name</label>
-                    <input type="text" class="form-control" id="cname" name="cname" value="{{$card_child->cname}}">
+                    <input type="text" class="form-control" id="cname" name="name" value="{{$card_child->cname}}">
                   </div>
                     </div>
                     <input type="hidden" class="form-control" id="card_child_id" name="card_child_id" value="{{$card_child->id}}">
