@@ -42,6 +42,12 @@
     <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-analytics.js"></script>
  
 <style>
+  footer.main-footer {
+    position: fixed;
+    width: 100%;
+    bottom:0;
+    font-size:11px;
+}
   p#invoice_para {
     font-size: 17px;
     margin-left:4px;
@@ -627,6 +633,11 @@
   <img src="images/icntogge.png" alt="toggle" class="toggle_icon-wraps">
   <!-- Main Footer -->
   @yield('main_section')
+  <footer class="main-footer">
+    <strong>Copyright © 2023 <a href="#" target="_blank">Khalsa Card & Social Simba</a>,</strong>
+    All rights reserved.
+    
+  </footer>
 <!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->
@@ -725,7 +736,7 @@
         jQuery(this).addClass('menu-open');
 });
 });
-  <!-- </script> -->
+</script> -->
   
  <script>
     jQuery(function ($) {

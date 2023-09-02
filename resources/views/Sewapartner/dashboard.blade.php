@@ -199,7 +199,7 @@
     <!-- /.content-header -->
 
     <!-- Main content -->
-    <section class="content">
+    <section class="content pb-5">
       <div class="container-fluid icons-dashboard">
         <div class="row ">
           <div class="col-xl-2 col-md-6 col-6">

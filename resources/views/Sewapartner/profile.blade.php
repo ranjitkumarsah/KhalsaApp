@@ -359,7 +359,7 @@
     
 
     @if($data->categories == "Hospital")
-    <section class="content second">
+    <section class="content second pb-5">
       <div class="container-fluid">
         <div class="row">
           <div class="col-12 mt-5">

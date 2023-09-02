@@ -85,6 +85,13 @@
       }
 
       .details tr { height: 40px; }
+      table.details th:first-child {
+        width: 30%;
+      }
+
+      table.details th:last-child {
+          width: 70%;
+      }
   </style>
   </head>
   
