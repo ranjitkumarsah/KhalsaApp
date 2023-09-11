@@ -34,7 +34,10 @@ use App\Http\Controllers\AdminController;
         // });
 
     Route::get('dashboard',[AdminController::class,'dashboard']); 
+    Route::get('change_password',[AdminController::class,'change_password']); 
+    Route::post('change_password',[AdminController::class,'change_password']); 
     Route::get('dashboard1',[AdminController::class,'dashboard1']); 
+
     Route::get('cardholder',[AdminController::class,'cardholder']); 
     Route::post('savecardholder',[AdminController::class,'savecardholder']);
     Route::get('volunteer',[AdminController::class,'volunteer']); 

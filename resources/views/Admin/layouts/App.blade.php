@@ -352,6 +352,14 @@ footer.main-footer {
               </p>
             </a>
          </li>
+         <li class="new">
+          <a href="{{url('Admin/change_password')}}"  class="nav-link  ">
+          <i class="material-icons opacity-10 new" style="vertical-align: middle;">lock</i>
+              <p style="margin-left: 10px;" class="paracolor">
+                Change Password
+              </p>
+            </a>
+         </li>
          {{-- <li class="new">
           <a href="{{url('Admin/dashboard1')}}"  class="nav-link  ">
           <i class="material-icons opacity-10 new" style="vertical-align: middle;">dashboard</i>

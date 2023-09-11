@@ -17,6 +17,9 @@ use DataTables;
 use Illuminate\Support\Js;
 use PDF;
 use DateTime;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
+
 class AdminController extends Controller
 {
     public function login_view(){
@@ -5522,4 +5525,49 @@ class AdminController extends Controller
       ]);          
     }
   }
+
+  public function change_password(Request $request) {
+
+    if ($request->isMethod('get')) {
+      
+      return view('Admin.change_password');
+    }
+
+    if ($request->isMethod('post')) {
+      
+      $validator = Validator::make($request->all(), [
+        'current_password' => 'required|string',
+        'new_password'     => 'required|confirmed|min:8|string',
+      ]);
+
+      if ( $validator->fails()) { 
+        return response()->json([
+          'status'=>'0',
+          'message'=>$validator->errors()->first(),
+        ]);          
+      }
+
+
+      $auth = Auth::user();
+
+      if (!Hash::check($request->get('current_password'), $auth->password)) {
+            
+        return response()->json([
+          'status'=>'0',
+          'message'=>'Current Password is Invalid',
+        ]); 
+      }
+
+      $user =  User::find($auth->id);
+      $user->password =  Hash::make($request->new_password);
+      $user->save();
+
+      return response()->json([
+        'status'=>'1',
+        'message'=>'Password Changed',
+      ]); 
+    }
+  }
+
+    
 }
